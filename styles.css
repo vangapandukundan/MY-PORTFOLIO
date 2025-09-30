@@ -131,9 +131,10 @@ body.light-theme .theme-toggle::before {
 .navbar ul li a {
   color: var(--text-primary);
   text-decoration: none;
-  padding: 8px 12px;
-  border-radius: 6px;
+  padding: 12px 20px;
+  border-radius: 8px;
   font-weight: 500;
+  font-size: 1.05rem;
   transition: all 0.3s ease;
 }
 
