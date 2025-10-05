@@ -83,6 +83,14 @@ body {
   gap: 8px;
 }
 
+/* Mobile: Move theme toggle below navbar */
+@media (max-width: 600px) {
+  .theme-toggle {
+    top: 200px;
+    right: 20px;
+  }
+}
+
 .theme-toggle:hover {
   transform: translateY(-2px);
   box-shadow: 0 6px 20px rgba(0, 0, 0, 0.3);
@@ -131,9 +139,10 @@ body.light-theme .theme-toggle::before {
 .navbar ul li a {
   color: var(--text-primary);
   text-decoration: none;
-  padding: 8px 12px;
-  border-radius: 6px;
+  padding: 12px 20px;
+  border-radius: 8px;
   font-weight: 500;
+  font-size: 1.05rem;
   transition: all 0.3s ease;
 }
 
@@ -593,4 +602,3 @@ body.light-theme .hero-buttons .btn.github {
     padding: 12px 20px;
   }
 }
-
