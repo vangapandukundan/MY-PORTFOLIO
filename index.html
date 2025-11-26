@@ -1,0 +1,247 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Home - Portfolio</title>
+    <link rel="stylesheet" href="css/style.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
+    <style>
+        /* Additional styles for Education & Resume sections */
+        .edu-resume-section {
+            padding: 80px 40px;
+            background-color: #f8f8f8;
+        }
+
+        .section-container {
+            max-width: 1200px;
+            margin: 0 auto;
+        }
+
+        .section-title {
+            font-size: 2.5rem;
+            font-weight: bold;
+            margin-bottom: 10px;
+            color: #2c2c2c;
+        }
+
+        .section-underline {
+            width: 60px;
+            height: 4px;
+            background-color: #ff6b6b;
+            margin-bottom: 50px;
+        }
+
+        .column-container {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 60px;
+            margin-bottom: 80px;
+        }
+
+        /* Education Column */
+        .education-column h3 {
+            font-size: 1.8rem;
+            margin-bottom: 30px;
+            color: #2c2c2c;
+        }
+
+        .education-column ul {
+            list-style: none;
+            padding: 0;
+        }
+
+        .education-column li {
+            margin-bottom: 25px;
+            padding: 20px;
+            background: white;
+            border-radius: 8px;
+            box-shadow: 0 2px 10px rgba(0, 0, 0, 0.05);
+        }
+
+        .education-column strong {
+            display: block;
+            font-size: 1.2rem;
+            color: #2c2c2c;
+            margin-bottom: 5px;
+        }
+
+        .education-column br + text,
+        .education-column li > text {
+            color: #666;
+            font-size: 1rem;
+        }
+
+        /* Resume Column */
+        .resume-column {
+            background: white;
+            padding: 40px;
+            border-radius: 8px;
+            box-shadow: 0 2px 10px rgba(0, 0, 0, 0.05);
+        }
+
+        .resume-column h3 {
+            font-size: 1.8rem;
+            margin-bottom: 20px;
+            color: #2c2c2c;
+        }
+
+        .resume-column p {
+            color: #666;
+            font-size: 1.1rem;
+            margin-bottom: 25px;
+        }
+
+        .resume-btn {
+            display: inline-flex;
+            align-items: center;
+            gap: 10px;
+            padding: 14px 30px;
+            background-color: #ff6b6b;
+            color: white;
+            text-decoration: none;
+            border-radius: 50px;
+            font-weight: 600;
+            font-size: 1rem;
+            transition: all 0.3s ease;
+            box-shadow: 0 4px 15px rgba(255, 107, 107, 0.3);
+        }
+
+        .resume-btn:hover {
+            background-color: #ff5252;
+            transform: translateY(-3px);
+            box-shadow: 0 6px 20px rgba(255, 107, 107, 0.4);
+        }
+
+        /* Responsive */
+        @media (max-width: 768px) {
+            .column-container {
+                grid-template-columns: 1fr;
+                gap: 40px;
+            }
+
+            .section-title {
+                font-size: 2rem;
+            }
+        }
+    </style>
+</head>
+<body>
+    <!-- Logo -->
+    <div class="logo">K</div>
+
+    <!-- Hamburger Menu -->
+    <div class="hamburger" id="hamburger">
+        <span></span>
+        <span></span>
+        <span></span>
+    </div>
+
+    <!-- Navigation Menu -->
+    <nav class="nav-menu" id="navMenu">
+        <button class="close-menu" id="closeMenu">
+            <i class="fa-solid fa-xmark"></i>
+        </button>
+
+        <ul class="nav-links">
+            <li><a href="index.html" class="active">Home</a></li>
+            <li><a href="about.html">About</a></li>
+            <li><a href="projects.html">Projects</a></li>
+            <li><a href="certificates.html">Certificates</a></li>
+            <li><a href="https://github.com/vangapandukundan" target="_blank">GitHub</a></li>
+            <li><a href="https://www.linkedin.com/in/kundan-student" target="_blank">LinkedIn</a></li>
+            <li><a href="contact.html">Contact</a></li>
+        </ul>
+    </nav>
+
+    <!-- Main Content -->
+    <main>
+        <!-- Hero Slider Section -->
+        <section class="hero-slider">
+            <div class="slider-container">
+                <div class="slide active">
+                    <div class="slide-overlay"></div>
+                    <div class="slide-content">
+                        <h1 class="slide-title">Hi, I am Kundan.</h1>
+                        <p class="slide-subtitle"></p>
+                    </div>
+                </div>
+                
+                <div class="slide">
+                    <div class="slide-overlay"></div>
+                    <div class="slide-content">
+                        <h1 class="slide-title">Welcome to my Personal Portfolio!</h1>
+                        <p class="slide-subtitle"></p>
+                    </div>
+                </div>
+                
+                <div class="slide">
+                    <div class="slide-overlay"></div>
+                    <div class="slide-content">
+                        <h1 class="slide-title">You can find my work, projects, and contact info here.</h1>
+                        <p class="slide-subtitle"></p>
+                    </div>
+                </div>
+            </div>
+            
+            <!-- Slider Controls -->
+            <button class="slider-arrow slider-prev" id="prevSlide">
+                <i class="fas fa-chevron-left"></i>
+            </button>
+            <button class="slider-arrow slider-next" id="nextSlide">
+                <i class="fas fa-chevron-right"></i>
+            </button>
+            
+            <!-- Slider Indicators -->
+            <div class="slider-indicators">
+                <button class="indicator active" data-slide="0"></button>
+                <button class="indicator" data-slide="1"></button>
+                <button class="indicator" data-slide="2"></button>
+            </div>
+        </section>
+
+        <!-- Education & Resume Section -->
+        <section class="edu-resume-section">
+            <div class="section-container">
+                <h2 class="section-title">More About Me</h2>
+                <div class="section-underline"></div>
+
+                <div class="column-container">
+                    <!-- Education Column -->
+                    <div class="education-column">
+                        <h3>Education:</h3>
+                        <ul>
+                            <li>
+                                <strong>B.Tech in Computer Data Science</strong><br>
+                                Gitam Deemed University (2023-2027)
+                                🎓 Hyderabad Campus
+                            </li>
+                            <li>
+                                <strong>Intermediate (MPC)</strong><br>
+                                Sri Chaitanya Bhaskar Bhavan (2021-2023)
+                                🏫 Vijayawada
+                            </li>
+                            <li>
+                                <strong>CBSE</strong><br>
+                                Nalanda Vidya Nikethan School (2016-2021)
+                                🏫 Vijayawada
+                            </li>
+                        </ul>
+                    </div>
+
+                    <!-- Resume Column -->
+                    <div class="resume-column box-shadow">
+                        <h3>Resume:</h3>
+                        <p>You can download my latest resume below:</p>
+                        <a href="files/Kundan_Resume.pdf" download class="resume-btn">
+                            <i class="fa-solid fa-download"></i> Download Resume
+                        </a>
+                    </div>
+                </div>
+            </div>
+        </section>
+    </main>
+
+    <script src="js/script.js"></script>
+</body>
+</html>
