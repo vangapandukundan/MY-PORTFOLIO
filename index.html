@@ -7,14 +7,34 @@
     <link rel="stylesheet" href="css/style.css">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
     <style>
-        /* Additional styles for Education & Resume sections */
+        /* --- 1. GLOBAL FIXES (Removes white lines & gaps) --- */
+        html, body {
+            margin: 0;
+            padding: 0;
+            overflow-x: hidden; /* Stops horizontal scrolling */
+            width: 100%;
+        }
+
+        a {
+            text-decoration: none !important; /* Removes underlines */
+        }
+
+        button:focus, .info-button:focus {
+            outline: none; /* Removes white focus box on click */
+        }
+
+        img {
+            display: block; /* Removes gap below images */
+        }
+
+        /* --- EXISTING STYLES --- */
         .edu-resume-section {
             padding: 80px 40px;
             background-color: #f8f8f8;
         }
 
         .section-container {
-            max-width: 1200px;
+            max-width: 800px; /* Reduced width slightly for better reading */
             margin: 0 auto;
         }
 
@@ -23,20 +43,21 @@
             font-weight: bold;
             margin-bottom: 10px;
             color: #040404d2;
+            text-align: center; /* Centered Title */
         }
 
         .section-underline {
             width: 60px;
             height: 4px;
             background-color: #ff6b6b;
-            margin-bottom: 50px;
+            margin: 0 auto 50px auto; /* Centered Underline */
         }
 
+        /* --- CHANGED LAYOUT TO VERTICAL STACK --- */
         .column-container {
-            display: grid;
-            grid-template-columns: 1fr 1fr;
-            gap: 60px;
-            margin-bottom: 80px;
+            display: flex;       /* Use Flexbox */
+            flex-direction: column; /* Stack items vertically (Top to Bottom) */
+            gap: 40px;          /* Space between Education and Resume */
         }
 
         /* Education Column */
@@ -72,12 +93,23 @@
             font-size: 1rem;
         }
 
-        /* Resume Column */
+        /* --- RESUME SECTION (CENTERED) --- */
         .resume-column {
             background: white;
             padding: 40px;
             border-radius: 8px;
             box-shadow: 0 2px 10px rgba(0, 0, 0, 0.05);
+            
+            /* Center the box itself */
+            margin: 20px auto 0 auto;
+            max-width: 600px;
+            width: 100%;
+            
+            /* Center the text inside */
+            text-align: center;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
         }
 
         .resume-column h3 {
@@ -113,31 +145,63 @@
             box-shadow: 0 6px 20px rgba(255, 107, 107, 0.4);
         }
 
+        /* Hide original hamburger */
+        .hamburger {
+            display: none !important;
+        }
+
+        /* Info Button */
+        .info-button {
+            position: fixed;
+            top: 40px;
+            right: 40px;
+            z-index: 1001;
+            background: #f4c430;
+            border: none;
+            padding: 12px 24px;
+            border-radius: 50px;
+            cursor: pointer;
+            font-weight: 600;
+            font-size: 1rem;
+            color: #2c2c2c;
+            display: flex;
+            align-items: center;
+            gap: 8px;
+            transition: all 0.3s ease;
+            box-shadow: 0 4px 15px rgba(244, 196, 48, 0.3);
+        }
+
+        .info-button:hover {
+            background: #e6b800;
+            transform: translateY(-2px);
+            box-shadow: 0 6px 20px rgba(244, 196, 48, 0.5);
+        }
+
+        .info-button i {
+            font-size: 1.2rem;
+        }
+
         /* Responsive */
         @media (max-width: 768px) {
-            .column-container {
-                grid-template-columns: 1fr;
-                gap: 40px;
-            }
-
             .section-title {
                 font-size: 2rem;
+            }
+            .info-button {
+                top: 25px;
+                right: 20px;
+                padding: 10px 20px;
+                font-size: 0.9rem;
             }
         }
     </style>
 </head>
 <body>
-    <!-- Logo -->
-    <div class="logo"></div>
 
-    <!-- Hamburger Menu -->
-    <div class="hamburger" id="hamburger">
-        <span></span>
-        <span></span>
-        <span></span>
-    </div>
+    <button class="info-button" id="infoButton">
+        <i class="fa-solid fa-info-circle"></i>
+        <span>Info</span>
+    </button>
 
-    <!-- Navigation Menu -->
     <nav class="nav-menu" id="navMenu">
         <button class="close-menu" id="closeMenu">
             <i class="fa-solid fa-xmark"></i>
@@ -154,9 +218,7 @@
         </ul>
     </nav>
 
-    <!-- Main Content -->
     <main>
-        <!-- Hero Slider Section -->
         <section class="hero-slider">
             <div class="slider-container">
                 <div class="slide active">
@@ -184,7 +246,6 @@
                 </div>
             </div>
             
-            <!-- Slider Controls -->
             <button class="slider-arrow slider-prev" id="prevSlide">
                 <i class="fas fa-chevron-left"></i>
             </button>
@@ -192,7 +253,6 @@
                 <i class="fas fa-chevron-right"></i>
             </button>
             
-            <!-- Slider Indicators -->
             <div class="slider-indicators">
                 <button class="indicator active" data-slide="0"></button>
                 <button class="indicator" data-slide="1"></button>
@@ -200,48 +260,85 @@
             </div>
         </section>
 
-        <!-- Education & Resume Section -->
         <section class="edu-resume-section">
             <div class="section-container">
                 <h2 class="section-title">More About Me</h2>
                 <div class="section-underline"></div>
 
                 <div class="column-container">
-                    <!-- Education Column -->
+                    
                     <div class="education-column">
-                        <h3>Education:</h3>
+                        <h3>Education & Skills:</h3>
                         <ul>
                             <li>
                                 <strong>B.Tech in Computer Data Science</strong><br>
-                                Gitam Deemed University (2023-2027)
+                                <span style="color: #666;">Gitam Deemed University (2023-2027)</span><br>
                                 🎓 Hyderabad Campus
                             </li>
                             <li>
                                 <strong>Intermediate (MPC)</strong><br>
-                                Sri Chaitanya Bhaskar Bhavan (2021-2023)
-                                🏫 Vijayawada
+                                <span style="color: #666;">Sri Chaitanya Bhaskar Bhavan (2021-2023)</span><br>
+                                 🏫 Vijayawada
                             </li>
                             <li>
-                                <strong>CBSE</strong><br>
-                                Nalanda Vidya Nikethan School (2016-2021)
-                                🏫 Vijayawada
+                                <strong>High School CBSE</strong><br>
+                                <span style="color: #666;">Nalanda Vidya Nikethan School (2016-2021)</span><br>
+                                 🏫 Vijayawada
                             </li>
                         </ul>
                     </div>
 
-                    <!-- Resume Column -->
-                    <div class="resume-column box-shadow">
+                    <div class="resume-column">
                         <h3>Resume:</h3>
                         <p>You can download my latest resume below:</p>
-                        <a href="files/V.KUNDAN RESUME.pdf.pdf" download class="resume-btn">
+                        <a href="files/Vangapandu Kundan Resume.pdf.pdf " download class="resume-btn">
                             <i class="fa-solid fa-download"></i> Download Resume
                         </a>
                     </div>
+
                 </div>
             </div>
         </section>
     </main>
 
     <script src="js/script.js"></script>
+    <script src="js/script.js"></script>
+    <script>
+        document.addEventListener('DOMContentLoaded', function() {
+            const infoBtn = document.getElementById('infoButton');
+            const nav = document.getElementById('navMenu');
+            const closeBtn = document.getElementById('closeMenu');
+
+            // 1. Toggle Menu (Open/Close)
+            if (infoBtn && nav) {
+                infoBtn.addEventListener('click', function(e) {
+                    e.stopPropagation(); // Prevents the click from bubbling up to the document immediately
+                    nav.classList.toggle('active');
+                });
+            }
+
+            // 2. Close Button (X)
+            if (closeBtn && nav) {
+                closeBtn.addEventListener('click', function(e) {
+                    e.preventDefault();
+                    nav.classList.remove('active');
+                });
+            }
+
+            // 3. Click Anywhere Outside to Close (NEW FEATURE)
+            document.addEventListener('click', function(e) {
+                // If the menu is open...
+                if (nav && nav.classList.contains('active')) {
+                    // ...and the click is NOT inside the menu...
+                    // ...and the click is NOT on the open button...
+                    if (!nav.contains(e.target) && !infoBtn.contains(e.target)) {
+                        nav.classList.remove('active'); // Close it!
+                    }
+                }
+            });
+        });
+    </script>
+</body>
+</html>
 </body>
 </html>
