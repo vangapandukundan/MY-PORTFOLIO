@@ -6,17 +6,203 @@
     <title>Projects - Portfolio</title>
     <link rel="stylesheet" href="css/style.css">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
+    <style>
+        /* --- 1. GLOBAL RESET & LOGO STYLES --- */
+        html, body {
+            margin: 0;
+            padding: 0;
+            overflow-x: hidden;
+            width: 100%;
+            background-color: #f8f8f8;
+            font-family: sans-serif;
+        }
+
+        a { text-decoration: none !important; }
+        button:focus { outline: none; }
+
+        /* The "K" Logo Style */
+        .logo {
+            position: fixed;
+            top: 40px;
+            left: 40px;
+            font-size: 2rem;
+            font-weight: 800;
+            color: #2c2c2c;
+            z-index: 1000;
+            user-select: none;
+        }
+
+        /* --- 2. NEW HAMBURGER MENU STYLE --- */
+        .hamburger {
+            position: fixed;
+            top: 40px;
+            right: 40px;
+            z-index: 1001;
+            background: transparent;
+            border: none;
+            cursor: pointer;
+            display: flex;
+            flex-direction: column;
+            justify-content: space-between;
+            width: 30px;
+            height: 22px;
+            padding: 0;
+        }
+
+        .hamburger span {
+            display: block;
+            width: 100%;
+            height: 3px;
+            background-color: #2c2c2c; /* Black lines */
+            border-radius: 3px;
+            transition: all 0.3s ease;
+        }
+
+        .hamburger:hover span {
+            background-color: #000;
+        }
+
+        /* --- 3. PAGE TITLE STYLES --- */
+        .projects-section {
+            padding: 80px 20px;
+            max-width: 1200px;
+            margin: 0 auto;
+        }
+
+        .page-title {
+            font-size: 2.5rem;
+            font-weight: bold;
+            color: #2c2c2c;
+            text-align: center;
+            margin-bottom: 10px;
+            margin-top: 20px;
+        }
+
+        .title-underline {
+            width: 60px;
+            height: 4px;
+            background-color: #ff6b6b;
+            margin: 0 auto 50px auto;
+        }
+
+        /* --- 4. PROJECT CARD GRID --- */
+        .project-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(320px, 1fr));
+            gap: 30px;
+            margin-top: 40px;
+        }
+
+        .project-card {
+            background: white;
+            border-radius: 12px;
+            overflow: hidden;
+            box-shadow: 0 4px 15px rgba(0,0,0,0.05);
+            transition: transform 0.3s ease, box-shadow 0.3s ease;
+            border: 1px solid #eee;
+            display: flex;
+            flex-direction: column;
+        }
+
+        .project-card:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 12px 30px rgba(0,0,0,0.15);
+        }
+
+        .card-image {
+            height: 160px;
+            background: linear-gradient(135deg, #f0f0f0 0%, #e0e0e0 100%);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 3rem;
+            color: #ff6b6b;
+        }
+
+        .card-content {
+            padding: 25px;
+            flex-grow: 1;
+            display: flex;
+            flex-direction: column;
+        }
+
+        .project-title {
+            font-size: 1.4rem;
+            font-weight: 700;
+            color: #2c2c2c;
+            margin: 10px 0;
+        }
+
+        .project-description {
+            color: #666;
+            font-size: 0.95rem;
+            line-height: 1.6;
+            margin-bottom: 20px;
+            flex-grow: 1;
+        }
+
+        .tech-stack {
+            display: flex;
+            gap: 8px;
+            margin-bottom: 15px;
+            flex-wrap: wrap;
+        }
+
+        .tech-badge {
+            background: #f0f0f0;
+            color: #444;
+            padding: 5px 12px;
+            border-radius: 20px;
+            font-size: 0.75rem;
+            font-weight: 600;
+            border: 1px solid #ddd;
+        }
+
+        .card-links {
+            padding-top: 20px;
+            border-top: 1px solid #eee;
+            display: flex;
+            gap: 20px;
+        }
+
+        .card-link {
+            color: #ff6b6b;
+            font-weight: 600;
+            font-size: 0.9rem;
+            display: flex;
+            align-items: center;
+            gap: 6px;
+            transition: color 0.2s;
+        }
+        
+        .card-link:hover { 
+            color: #e04a4a;
+            text-decoration: underline; 
+        }
+
+        /* --- 5. RESPONSIVE --- */
+        @media (max-width: 768px) {
+            .logo { top: 25px; left: 20px; font-size: 1.5rem; }
+            .hamburger { top: 25px; right: 20px; }
+            .projects-section { padding: 80px 20px; }
+        }
+    </style>
 </head>
 <body>
+
     <div class="logo">K</div>
-    <div class="hamburger" id="hamburger">
+
+    <button class="hamburger" id="infoButton">
         <span></span>
         <span></span>
         <span></span>
-    </div>
+    </button>
 
     <nav class="nav-menu" id="navMenu">
-        <button class="close-menu" id="closeMenu"><i class="fa-solid fa-xmark"></i></button>
+        <button class="close-menu" id="closeMenu">
+            <i class="fa-solid fa-xmark"></i>
+        </button>
+
         <ul class="nav-links">
             <li><a href="index.html">Home</a></li>
             <li><a href="about.html">About</a></li>
@@ -30,118 +216,148 @@
 
     <main>
         <section class="projects-section">
-            <div class="projects-container">
-                <h1 class="page-title">Projects</h1>
-                <div class="title-underline"></div>
-                <div class="projects-list">
+            <h1 class="page-title">My Projects</h1>
+            <div class="title-underline"></div>
 
+            <div class="project-grid">
 
-                    <div class="project-item">
-                        <div class="project-image-placeholder"><i class="fas fa-laptop-code"></i></div>
-                        <div class="project-details">
-                            <h2 class="project-title">Thread Detection with AI</h2>
-                            <p class="project-description">Built an intelligent threat detection system that analyzes network activity and identifies malicious or abnormal behavior using machine learning and anomaly detection techniques.</p>
-                            <div class="project-tech">
-                                <span class="tech-tag">Python</span>
-                                <span class="tech-tag">NLTK</span>
-                                <span class="tech-tag">spaCy</span>
-                                <span class="tech-tag">React</span>
-                                <span class="tech-tag">MongoDB</span>
-                            </div>
-                            <div class="project-links">
-                                <a href="https://github.com/vangapandukundan/Threat-Detection-AI" target="_blank" class="project-link"><i class="fab fa-github"></i> View Code</a>
-                                <a href="https://threat-detection-ai-sfmyghe6azj9pr29x8yaon.streamlit.app/" target="_blank" class="project-link"><i class="fas fa-external-link-alt"></i> Live Demo</a>
-                            </div>
+                <div class="project-card">
+                    <div class="card-image"><i class="fas fa-shield-alt"></i></div>
+                    <div class="card-content">
+                        <div class="tech-stack">
+                            <span class="tech-badge">Python</span>
+                            <span class="tech-badge">Scikit-learn</span>
+                            <span class="tech-badge">Pandas</span>
+                        </div>
+                        <h2 class="project-title">Threat Detection AI</h2>
+                        <p class="project-description">
+                            Trained a machine-learning model to detect cybersecurity threats using Python data tools. Saves models for real-time prediction.
+                        </p>
+                        <div class="card-links">
+                            <a href="https://github.com/vangapandukundan/Threat-Detection-AI" target="_blank" class="card-link"><i class="fab fa-github"></i> View Code</a>
+                            <a href="https://threat-detection-ai-sfmyghe6azj9pr29x8yaon.streamlit.app/" target="_blank" class="card-link"><i class="fas fa-external-link-alt"></i> Live Demo</a>
                         </div>
                     </div>
-
-                        
-                    <div class="project-item">
-                        <div class="project-image-placeholder"><i class="fas fa-laptop-code"></i></div>
-                        <div class="project-details">
-                            <h2 class="project-title">🔍 AI Code Reviewer</h2>
-                            <p class="project-description">It integrates multiple static analysis tools into one unified platform, making it useful for interns, students, and professional developers.</p>
-                            <div class="project-tech">
-                                <span class="tech-tag">Streamlit</span>
-                                <span class="tech-tag">Flake8</span>
-                                <span class="tech-tag">Radon</span>
-                                <span class="tech-tag">Black</span>
-                                <span class="tech-tag">Matplotlib</span>
-                                <span class="tech-tag">Python 3.10+</span>
-                            </div>
-                            <div class="project-links">
-                                <a href="https://github.com/kvangapa-gif/ELEVATE-LABS-INTERNSHIP-PROJECT-PHASE-" target="_blank" class="project-link"><i class="fab fa-github"></i> View Code</a>
-                                <a href="https://jgmqxoaptndlsravfmjpxg.streamlit.app/" target="_blank" class="project-link"><i class="fas fa-external-link-alt"></i> Live Demo</a>
-                            </div>
-                        </div>
-                    </div>
-
-                    <div class="project-item">
-                        <div class="project-image-placeholder"><i class="fas fa-laptop-code"></i></div>
-                        <div class="project-details">
-                            <h2 class="project-title">NLP Sentiment Analysis</h2>
-                            <p class="project-description">Developed a real-time sentiment analysis tool for social media data using natural language processing.</p>
-                            <div class="project-tech">
-                                <span class="tech-tag">Python</span>
-                                <span class="tech-tag">NLTK</span>
-                                <span class="tech-tag">spaCy</span>
-                                <span class="tech-tag">React</span>
-                                <span class="tech-tag">MongoDB</span>
-                            </div>
-                            <div class="project-links">
-                                <a href="https://github.com/yourusername/project2" target="_blank" class="project-link"><i class="fab fa-github"></i> View Code</a>
-                                <a href="https://demo-link.com" target="_blank" class="project-link"><i class="fas fa-external-link-alt"></i> Live Demo</a>
-                            </div>
-                        </div>
-                    </div>
-
-                    
-
-                    <div class="project-item">
-                        <div class="project-image-placeholder"><i class="fas fa-laptop-code"></i></div>
-                        <div class="project-details">
-                            <h2 class="project-title">News Summarizing</h2>
-                            <p class="project-description">Developed a real-time sentiment analysis tool for social media data using natural language processing.</p>
-                            <div class="project-tech">
-                                <span class="tech-tag">Python</span>
-                                <span class="tech-tag">NLTK</span>
-                                <span class="tech-tag">spaCy</span>
-                                <span class="tech-tag">React</span>
-                                <span class="tech-tag">MongoDB</span>
-                            </div>
-                            <div class="project-links">
-                                <a href="https://github.com/yourusername/project2" target="_blank" class="project-link"><i class="fab fa-github"></i> View Code</a>
-                                <a href="https://demo-link.com" target="_blank" class="project-link"><i class="fas fa-external-link-alt"></i> Live Demo</a>
-                            </div>
-                        </div>
-                    </div>
-
-
-                    <div class="project-item">
-                        <div class="project-image-placeholder"><i class="fas fa-laptop-code"></i></div>
-                        <div class="project-details">
-                            <h2 class="project-title">Image Resigner</h2>
-                            <p class="project-description">Resize images instantly right in your browser by uploading and downloading with custom dimensions, all without installs, servers, or added dependencies.</p>
-                            <div class="project-tech">
-                                <span class="tech-tag">Python</span>
-                                <span class="tech-tag">NLTK</span>
-                                <span class="tech-tag">spaCy</span>
-                                <span class="tech-tag">React</span>
-                                <span class="tech-tag">MongoDB</span>
-                            </div>
-                            <div class="project-links">
-                                <a href="https://github.com/vangapandukundan/Image_Resizer/blob/main/index.html" target="_blank" class="project-link"><i class="fab fa-github"></i> View Code</a>
-                                <a href="https://vangapandukundan.github.io/Image_Resizer/" target="_blank" class="project-link"><i class="fas fa-external-link-alt"></i> Live Demo</a>
-                            </div>
-                        </div>
-                    </div>
-    
-                    
                 </div>
+
+                <div class="project-card">
+                    <div class="card-image"><i class="fas fa-code-branch"></i></div>
+                    <div class="card-content">
+                        <div class="tech-stack">
+                            <span class="tech-badge">Streamlit</span>
+                            <span class="tech-badge">Python</span>
+                            <span class="tech-badge">Flake8</span>
+                        </div>
+                        <h2 class="project-title">AI Code Reviewer</h2>
+                        <p class="project-description">
+                            An automated code quality tool that integrates static analysis to help developers write cleaner, bug-free Python code.
+                        </p>
+                        <div class="card-links">
+                            <a href="https://github.com/kvangapa-gif/ELEVATE-LABS-INTERNSHIP-PROJECT-PHASE-" target="_blank" class="card-link"><i class="fab fa-github"></i> View Code</a>
+                            <a href="https://jgmqxoaptndlsravfmjpxg.streamlit.app/" target="_blank" class="card-link"><i class="fas fa-external-link-alt"></i> Live Demo</a>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="project-card">
+                    <div class="card-image"><i class="fas fa-comments"></i></div>
+                    <div class="card-content">
+                        <div class="tech-stack">
+                            <span class="tech-badge">Python</span>
+                            <span class="tech-badge">NLTK</span>
+                            <span class="tech-badge">React</span>
+                        </div>
+                        <h2 class="project-title">NLP Sentiment Analysis</h2>
+                        <p class="project-description">
+                            Real-time sentiment analysis tool for social media data. Visualizes public opinion trends using Natural Language Processing.
+                        </p>
+                        <div class="card-links">
+                            <a href="https://github.com/yourusername/project2" target="_blank" class="card-link"><i class="fab fa-github"></i> View Code</a>
+                            <a href="#" class="card-link"><i class="fas fa-external-link-alt"></i> Live Demo</a>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="project-card">
+                    <div class="card-image"><i class="fas fa-newspaper"></i></div>
+                    <div class="card-content">
+                        <div class="tech-stack">
+                            <span class="tech-badge">Python</span>
+                            <span class="tech-badge">spaCy</span>
+                            <span class="tech-badge">MongoDB</span>
+                        </div>
+                        <h2 class="project-title">News Summarizer</h2>
+                        <p class="project-description">
+                            An automated tool that condenses long news articles into concise summaries, making information consumption faster and easier.
+                        </p>
+                        <div class="card-links">
+                            <a href="https://github.com/yourusername/project2" target="_blank" class="card-link"><i class="fab fa-github"></i> View Code</a>
+                            <a href="#" class="card-link"><i class="fas fa-external-link-alt"></i> Live Demo</a>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="project-card">
+                    <div class="card-image"><i class="fas fa-image"></i></div>
+                    <div class="card-content">
+                        <div class="tech-stack">
+                            <span class="tech-badge">HTML5 Canvas</span>
+                            <span class="tech-badge">JavaScript</span>
+                            <span class="tech-badge">CSS</span>
+                        </div>
+                        <h2 class="project-title">Image Resizer</h2>
+                        <p class="project-description">
+                            A browser-based tool allowing users to upload and resize images instantly without server-side processing.
+                        </p>
+                        <div class="card-links">
+                            <a href="https://github.com/vangapandukundan/Image_Resizer/blob/main/index.html" target="_blank" class="card-link"><i class="fab fa-github"></i> View Code</a>
+                            <a href="https://vangapandukundan.github.io/Image_Resizer/" target="_blank" class="card-link"><i class="fas fa-external-link-alt"></i> Live Demo</a>
+                        </div>
+                    </div>
+                </div>
+
             </div>
         </section>
     </main>
 
     <script src="js/script.js"></script>
+    <script src="js/script.js"></script>
+    <script>
+        document.addEventListener('DOMContentLoaded', function() {
+            const infoBtn = document.getElementById('infoButton');
+            const nav = document.getElementById('navMenu');
+            const closeBtn = document.getElementById('closeMenu');
+
+            // 1. Toggle Menu (Open/Close)
+            if (infoBtn && nav) {
+                infoBtn.addEventListener('click', function(e) {
+                    e.stopPropagation(); // Prevents the click from bubbling up to the document immediately
+                    nav.classList.toggle('active');
+                });
+            }
+
+            // 2. Close Button (X)
+            if (closeBtn && nav) {
+                closeBtn.addEventListener('click', function(e) {
+                    e.preventDefault();
+                    nav.classList.remove('active');
+                });
+            }
+
+            // 3. Click Anywhere Outside to Close (NEW FEATURE)
+            document.addEventListener('click', function(e) {
+                // If the menu is open...
+                if (nav && nav.classList.contains('active')) {
+                    // ...and the click is NOT inside the menu...
+                    // ...and the click is NOT on the open button...
+                    if (!nav.contains(e.target) && !infoBtn.contains(e.target)) {
+                        nav.classList.remove('active'); // Close it!
+                    }
+                }
+            });
+        });
+    </script>
+</body>
+</html>
 </body>
 </html>
